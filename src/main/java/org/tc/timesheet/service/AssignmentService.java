@@ -53,12 +53,13 @@ public class AssignmentService {
 	}
 
 	public Map<String, Object> deleteAssignment(Long id) {
-		Map<String,Object> responseMap =new HashMap<>();
-		responseMap.put("response","Successfully Deleted Record");
+		Map<String, Object> responseMap = new HashMap<>();
+		responseMap.put("response", "Successfully Deleted Record");
 		// TODO Auto-generated method stub
-	AssignmentModel model=	assignmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Assignment not found:"));
-	model.setStatus("InActive");
-	model=assignmentRepository.save(model);
+		AssignmentModel model = assignmentRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Assignment not found:"));
+		model.setStatus("InActive");
+		model = assignmentRepository.save(model);
 		return responseMap;
 	}
 

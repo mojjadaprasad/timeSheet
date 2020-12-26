@@ -13,49 +13,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.tc.timesheet.dto.EmployeeDto;
-import org.tc.timesheet.service.EmployeeService;
+import org.tc.timesheet.dto.HolidayDto;
+import org.tc.timesheet.service.HolidayService;
 
 @RestController
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/holiday")
+public class HolidayController {
 
 	@Autowired
-	EmployeeService service;
-
+	HolidayService service;
+	
 	@GetMapping
 	@ResponseBody
-	public List<EmployeeDto> getList() {
-		List<EmployeeDto> list = service.findAll();
+	public List<HolidayDto> getList() {
+		List<HolidayDto> list = service.findAll();
 		return list;
 	}
 
 	@PostMapping
 	@ResponseBody
-	public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeModel) {
-		EmployeeDto employee = service.save(employeeModel);
+	public HolidayDto addHoliday(@RequestBody HolidayDto employeeModel) {
+		HolidayDto employee = service.save(employeeModel);
 		return employee;
 	}
 
 	@GetMapping("/{id}")
 	@ResponseBody
-	public EmployeeDto getById(@PathVariable(value = "id") Long id) {
-		EmployeeDto employeeModel = service.findById(id);
+	public HolidayDto getById(@PathVariable(value = "id") Long id) {
+		HolidayDto employeeModel = service.findById(id);
 
 		return employeeModel;
 	}
 
 	@PutMapping
 	@ResponseBody
-	public EmployeeDto empDetailsUpdate(@RequestBody EmployeeDto employeeModel) {
-		EmployeeDto updateData = service.update(employeeModel);
+	public HolidayDto update(@RequestBody HolidayDto employeeModel) {
+		HolidayDto updateData = service.update(employeeModel);
 		return updateData;
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseBody
-	public Map<String, Object> deleteEmployee(@PathVariable(value = "id") Long id) {
-		Map<String, Object> responseMap = service.deleteEmployee(id);
+	public Map<String, Object> delete(@PathVariable(value = "id") Long id) {
+		Map<String, Object> responseMap = service.delete(id);
 		return responseMap;
 	}
 }

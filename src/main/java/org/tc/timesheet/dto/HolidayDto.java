@@ -1,23 +1,11 @@
-package org.tc.timesheet.model;
+package org.tc.timesheet.dto;
 
 import java.util.Date;
 
-public class HolidaysModel {
+public class HolidayDto extends BaseDto {
 
-	
-	private Long id;
-	
 	private Date date;
-	
 	private String description;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Date getDate() {
 		return date;
@@ -34,5 +22,9 @@ public class HolidaysModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "HolidayDto [date=" + date + ", description=" + description + "]";
+	}
 }

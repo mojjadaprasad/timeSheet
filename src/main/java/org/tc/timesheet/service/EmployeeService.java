@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.tc.timesheet.dto.EmployeeDto;
 import org.tc.timesheet.exception.ResourceNotFoundException;
 import org.tc.timesheet.model.EmployeeModel;
-import org.tc.timesheet.model.ManagerModel;
 import org.tc.timesheet.repository.EmployeeRepository;
 import org.tc.timesheet.util.MapperUtil;
 

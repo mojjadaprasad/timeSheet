@@ -2,8 +2,6 @@ package org.tc.timesheet.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 public class EmployeeDto extends BaseDto {
 
 	
@@ -15,6 +13,7 @@ public class EmployeeDto extends BaseDto {
 	private String gender;
 	private String userName;
 	private String password;
+
 	public Long getId() {
 		return super.id;
 	}

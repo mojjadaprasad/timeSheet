@@ -2,8 +2,6 @@ package org.tc.timesheet.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import org.tc.timesheet.model.EmployeeModel;
 import org.tc.timesheet.model.ManagerModel;
 

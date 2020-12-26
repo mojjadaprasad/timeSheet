@@ -23,7 +23,6 @@ public class EmployeeModel extends BaseEntity{
 	private String password;
 
 	@Id
-	@Override
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	public Long getId() {
@@ -97,7 +96,6 @@ public class EmployeeModel extends BaseEntity{
 
 	@Column(name="STATUS")
 	public String getStatus() {
-		// TODO Auto-generated method stub
 		return status;
 	}
 
