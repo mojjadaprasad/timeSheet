@@ -1,7 +1,6 @@
 package org.tc.timesheet.controller;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.tc.timesheet.dto.AssignmentDto;
@@ -30,8 +30,10 @@ public class AssignmentController {
 
 	@GetMapping
 	@ResponseBody
-	public List<AssignmentDto> getList() throws IllegalAccessException, InvocationTargetException {
-		List<AssignmentDto> list = assignmentService.findAll();
+	public List<AssignmentDto> getList(@RequestParam(value = "employeeId", required = false) Long employeeId)
+			throws IllegalAccessException, InvocationTargetException {
+
+		List<AssignmentDto> list = assignmentService.findAssignments(employeeId);
 		return list;
 	}
 

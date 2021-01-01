@@ -63,4 +63,11 @@ public class AssignmentService {
 		return responseMap;
 	}
 
+	public List<AssignmentDto> findAssignments(Long employeeId) {
+		List<AssignmentDto> dtoList = new ArrayList<>();
+		List<AssignmentModel> list = assignmentRepository.findAssignments(employeeId);
+		dtoList = MapperUtil.map(list, AssignmentDto.class);
+		return dtoList;
+	}
+
 }

@@ -29,60 +29,37 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- Spring ORM -->
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-orm</artifactId><version>${spring.version}</version></dependency> -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- Hibernate Validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.1.0.RELEASE</version>
 		</dependency>
-		<!-- JSTL Dependency -->
-		<!-- <dependency> <groupId>javax.servlet.jsp.jstl</groupId> <artifactId>javax.servlet.jsp.jstl-api</artifactId><version>${jstl.version}</version> 
-			</dependency> <dependency> <groupId>taglibs</groupId><artifactId>standard</artifactId> 
-			<version>${tld.version}</version> </dependency> -->
-		<!-- Servlet Dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlets.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- JSP Dependency -->
-		<!-- <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>javax.servlet.jsp-api</artifactId><version>${jsp.version}</version> 
-			<scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.47</version>
 		</dependency>
-		<!-- logging -->
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.20</version>
-		</dependency> -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.7</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>5.5.1</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>

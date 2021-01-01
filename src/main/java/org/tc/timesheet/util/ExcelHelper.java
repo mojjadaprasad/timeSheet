@@ -42,7 +42,7 @@ public class ExcelHelper {
 				mergeStyle.setVerticalAlignment(VerticalAlignment.CENTER);
 				mergeStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				List<TimeSheetModel> list = (List<TimeSheetModel>) employeeMap.get(employeeName);
-				int totalWorkingDays = getTotalDaysWorked(list);
+				float totalWorkingDays = getTotalDaysWorked(list);
 				String sheetName = employeeName + " (" + totalWorkingDays + ")";
 				Sheet sheet = workbook.createSheet(sheetName);
 				CellStyle cellStyle = workbook.createCellStyle();
@@ -92,10 +92,10 @@ public class ExcelHelper {
 		}
 	}
 
-	private static int getTotalDaysWorked(List<TimeSheetModel> list) {
+	private static float getTotalDaysWorked(List<TimeSheetModel> list) {
 		int fullDays = 0;
 		int halfDays = 0;
-		int totalWorkingDays;
+		float totalWorkingDays;
 
 		for (TimeSheetModel model : list) {
 			int hours = model.getHours();
@@ -106,7 +106,7 @@ public class ExcelHelper {
 				halfDays++;
 			}
 		}
-		totalWorkingDays = (int) (fullDays + (halfDays * 0.5));
+		totalWorkingDays = (float) (fullDays + (halfDays * 0.5));
 		return totalWorkingDays;
 
 	}

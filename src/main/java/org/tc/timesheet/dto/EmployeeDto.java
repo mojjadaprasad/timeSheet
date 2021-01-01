@@ -13,7 +13,59 @@ public class EmployeeDto extends BaseDto {
 	private String gender;
 	private String userName;
 	private String password;
+	private String firstName;
+	private String lastName;
+	private String aadharNo;
+	private String panNo;
+	private String passportNo;
+	private String altMobile;
+	private String emgMobile;
 
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getAadharNo() {
+		return aadharNo;
+	}
+	public void setAadharNo(String aadharNo) {
+		this.aadharNo = aadharNo;
+	}
+	public String getPanNo() {
+		return panNo;
+	}
+	public void setPanNo(String panNo) {
+		this.panNo = panNo;
+	}
+	public String getPassportNo() {
+		return passportNo;
+	}
+	public void setPassportNo(String passportNo) {
+		this.passportNo = passportNo;
+	}
+	public String getAltMobile() {
+		return altMobile;
+	}
+	public void setAltMobile(String altMobile) {
+		this.altMobile = altMobile;
+	}
+	public String getEmgMobile() {
+		return emgMobile;
+	}
+	public void setEmgMobile(String emgMobile) {
+		this.emgMobile = emgMobile;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return super.id;
 	}
@@ -70,10 +122,12 @@ public class EmployeeDto extends BaseDto {
 	}
 	@Override
 	public String toString() {
-		return "EmployeeModel [name=" + name + ", mailId=" + mailId + ", mobile=" + mobile + ", gender=" + gender
-				+ ", userName=" + userName + ", password=" + password + ", id=" + id + ", createdOn=" + createdOn
-				+ ", status=" + status + "]";
+		return "EmployeeDto [id=" + id + ", status=" + status + ", name=" + name + ", mailId=" + mailId + ", mobile="
+				+ mobile + ", gender=" + gender + ", userName=" + userName + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", aadharNo=" + aadharNo + ", panNo=" + panNo + ", passportNo="
+				+ passportNo + ", altMobile=" + altMobile + ", emgMobile=" + emgMobile + "]";
 	}
+	
 	
 	
 }

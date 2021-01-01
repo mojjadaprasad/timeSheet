@@ -2,7 +2,6 @@ package org.tc.timesheet.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -10,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +28,7 @@ import org.tc.timesheet.service.TimeSheetService;
 public class TimeSheetController {
 
 	@Autowired
+
 	TimeSheetRepository timeSheetRepository;
 
 	@Autowired
@@ -41,11 +40,19 @@ public class TimeSheetController {
 		List<TimeSheetDto> list = timeSheetService.findAll();
 		return list;
 	}
+	
+	@GetMapping("/search")
+	public List<TimeSheetDto> findByAssignmentIdAndDateRange(@RequestParam(value="assignmentId",required=true) Long assignmentId,
+			@RequestParam(value="fromDate",required=true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate ,
+			@RequestParam(value="toDate",required=true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate){
+		List<TimeSheetDto> dtoList=timeSheetService.findByAssignmentIdAndDateRange(assignmentId,fromDate,toDate);
+		return dtoList;
+	}
 
 	@PostMapping
 	@ResponseBody
-	public List<TimeSheetDto>  saveData(@RequestBody List<TimeSheetDto> timeSheetModel) {
-		List<TimeSheetDto>  timeSheet = timeSheetService.save(timeSheetModel);
+	public List<TimeSheetDto> saveData(@RequestBody List<TimeSheetDto> timeSheetModel) {
+		List<TimeSheetDto> timeSheet = timeSheetService.save(timeSheetModel);
 		return timeSheet;
 	}
 
@@ -74,6 +81,5 @@ public class TimeSheetController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + TimeSheetService.fileName + ".xlsx")
 				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
 	}
-
 
 }

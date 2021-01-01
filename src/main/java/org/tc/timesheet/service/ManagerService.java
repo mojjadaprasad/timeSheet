@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tc.timesheet.dto.ManagerDto;
 import org.tc.timesheet.exception.ResourceNotFoundException;
-import org.tc.timesheet.model.AssignmentModel;
 import org.tc.timesheet.model.ManagerModel;
 import org.tc.timesheet.repository.ManagerRepository;
 import org.tc.timesheet.util.MapperUtil;

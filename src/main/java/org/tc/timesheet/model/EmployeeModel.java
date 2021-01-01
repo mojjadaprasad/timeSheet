@@ -21,6 +21,18 @@ public class EmployeeModel extends BaseEntity{
 	private String gender;
 	private String userName;
 	private String password;
+	private String firstName;
+	private String lastName;
+	private String aadharNo;
+	private String panNo;
+	private String passportNo;
+	private String altMobile;
+	private String emgMobile;
+	
+	
+	private String address;
+	private Date doj;
+	private Date dob;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,12 +114,114 @@ public class EmployeeModel extends BaseEntity{
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	@Column(name="FIRST_NAME")
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	@Column(name="LAST_NAME")
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Column(name="AADHAR_NO")
+	public String getAadharNo() {
+		return aadharNo;
+	}
+
+	public void setAadharNo(String aadharNo) {
+		this.aadharNo = aadharNo;
+	}
+
+	@Column(name="PAN_NO")
+	public String getPanNo() {
+		return panNo;
+	}
+
+	public void setPanNo(String panNo) {
+		this.panNo = panNo;
+	}
+
+	@Column(name="PASSPOST_NO")
+	public String getPassportNo() {
+		return passportNo;
+	}
+
+	public void setPassportNo(String passportNo) {
+		this.passportNo = passportNo;
+	}
+
+	@Column(name="ALT_MOBILE")
+	public String getAltMobile() {
+		return altMobile;
+	}
+
+	public void setAltMobile(String altMobile) {
+		this.altMobile = altMobile;
+	}
+
+	@Column(name="EMG_MOBILE")
+	public String getEmgMobile() {
+		return emgMobile;
+	}
+
+	public void setEmgMobile(String emgMobile) {
+		this.emgMobile = emgMobile;
+	}
+
+	@Column(name="ADDRESS",length=4000)
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Column(name="DOJ")
+	public Date getDoj() {
+		return doj;
+	}
+
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+
+	@Column(name="DOB")
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
 	@Override
 	public String toString() {
-		return "EmployeeModel [name=" + name + ", mailId=" + mailId + ", mobile=" + mobile + ", gender=" + gender
-				+ ", userName=" + userName + ", password=" + password + ", id=" + id + ", createdOn=" + createdOn
-				+ ", status=" + status + "]";
+		return "EmployeeModel [name=" + name + ", status=" + status + ", mailId=" + mailId + ", mobile=" + mobile
+				+ ", gender=" + gender + ", userName=" + userName + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", aadharNo=" + aadharNo + ", panNo=" + panNo + ", passportNo="
+				+ passportNo + ", altMobile=" + altMobile + ", emgMobile=" + emgMobile + ", address=" + address
+				+ ", doj=" + doj + ", dob=" + dob + ", id=" + id + ", createdOn=" + createdOn + ", getId()=" + getId()
+				+ ", getName()=" + getName() + ", getMailId()=" + getMailId() + ", getMobile()=" + getMobile()
+				+ ", getGender()=" + getGender() + ", getUserName()=" + getUserName() + ", getPassword()="
+				+ getPassword() + ", getCreatedOn()=" + getCreatedOn() + ", getStatus()=" + getStatus()
+				+ ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + ", getAadharNo()="
+				+ getAadharNo() + ", getPanNo()=" + getPanNo() + ", getPassportNo()=" + getPassportNo()
+				+ ", getAltMobile()=" + getAltMobile() + ", getEmgMobile()=" + getEmgMobile() + ", getAddress()="
+				+ getAddress() + ", getDoj()=" + getDoj() + ", getDob()=" + getDob() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
 	
 
 }

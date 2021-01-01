@@ -2,6 +2,8 @@ package org.tc.timesheet.service;
 
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +26,9 @@ public class TimeSheetService {
 	TimeSheetRepository repository;
 
 	public ByteArrayInputStream load(Long managerId, Date from, Date to) {
-		List<TimeSheetModel> list = repository.getEmployeeTimesheets(managerId, from, to);
+		LocalDateTime ldt = LocalDateTime.ofInstant(to.toInstant(), ZoneId.systemDefault()).plusDays(1);
+		Date nextDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+		List<TimeSheetModel> list = repository.getEmployeeTimesheets(managerId, from, nextDate);
 		Map<String, Object> employeeMap = segregateEmployees(list);
 		String taskName = list.get(0).getAssignment().getTask();
 		String projectName = list.get(0).getAssignment().getProjectName();
@@ -36,11 +40,6 @@ public class TimeSheetService {
 		return in;
 	}
 
-	public List<TimeSheetDto> getEmployeeInformation(String userName, String password) {
-		List<TimeSheetModel> list = repository.getEmployeeInformation(userName, password);
-		List<TimeSheetDto> dtoList=MapperUtil.map(list, TimeSheetDto.class);
-		return dtoList;
-	}
 
 	private Map<String, Object> segregateEmployees(List<TimeSheetModel> list) {
 		Map<String, Object> employeeSheet = new HashMap<>();
@@ -87,5 +86,14 @@ public class TimeSheetService {
 		timeSheet = repository.save(timeSheet);
 		timeSheetDto = MapperUtil.map(timeSheet, TimeSheetDto.class);
 		return timeSheetDto;
+	}
+
+
+	public List<TimeSheetDto> findByAssignmentIdAndDateRange(Long assignmentId, Date fromDate, Date toDate) {
+		LocalDateTime ldt = LocalDateTime.ofInstant(toDate.toInstant(), ZoneId.systemDefault()).plusDays(1);
+		Date nextDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+		List<TimeSheetModel> modelList=repository.findByAssignmentIdAndDateRange(assignmentId,fromDate,nextDate);
+		List<TimeSheetDto> dtoList=MapperUtil.map(modelList, TimeSheetDto.class);
+		return dtoList;
 	}
 }

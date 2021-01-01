@@ -3,24 +3,23 @@ package org.tc.timesheet.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.tc.timesheet.dto.TimeSheetDto;
-import org.tc.timesheet.service.TimeSheetService;
+import org.tc.timesheet.dto.EmployeeDto;
+import org.tc.timesheet.service.EmployeeService;
 
 @RestController
 @RequestMapping("/login")
 public class AuthController {
 
-	@Autowired TimeSheetService timeSheetService;
+	@Autowired EmployeeService service;
 	
 	
-	@GetMapping
-	public List<TimeSheetDto> getEmpInfo(@RequestParam(name = "userName",required = true) String userName,
-			@RequestParam(name = "password", required = true) String password) {
-		List<TimeSheetDto> list = timeSheetService.getEmployeeInformation(userName, password);
-		return list;
+	@PostMapping
+	public EmployeeDto getEmpInfo(@RequestBody EmployeeDto dto) {
+		List<EmployeeDto> list = service.login(dto.getUserName(), dto.getPassword(),dto.getMobile());
+		return list.get(0);
 	}
 }

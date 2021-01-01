@@ -48,7 +48,7 @@ public class ManagerController {
 
 	@PutMapping
 	@ResponseBody
-	public ManagerDto updateManagerDetails(ManagerDto managerDto) {
+	public ManagerDto updateManagerDetails(@RequestBody ManagerDto managerDto) {
 		ManagerDto updateManager = service.updateManagerDetails(managerDto);
 		return updateManager;
 	}

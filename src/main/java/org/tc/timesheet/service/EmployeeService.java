@@ -60,4 +60,10 @@ public class EmployeeService {
 		model = repository.save(model);
 		return responseMap;
 	}
+	
+	public List<EmployeeDto> login(String userName,String password,String mobileNo) {
+		List<EmployeeModel> models=repository.getEmployeeInformation(userName, password,mobileNo);
+		List<EmployeeDto> dtoList= MapperUtil.map(models, EmployeeDto.class);
+		return  dtoList;
+	}
 }

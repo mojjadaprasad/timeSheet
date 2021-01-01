@@ -11,23 +11,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "manager_mst_tbl")
-public class ManagerModel  extends BaseEntity {
+public class ManagerModel extends BaseEntity {
 
-	
 	private String name;
 	private String mailId;
 	private String status;
 
 	@Id
 	@Override
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	public Long getId() {
 		return super.id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	@Override
+	@Column(name = "CREATED_ON")
+	public Date getCreatedOn() {
+		return super.createdOn;
 	}
 
 	@Column(name = "NAME")
@@ -47,31 +48,20 @@ public class ManagerModel  extends BaseEntity {
 	public void setMailId(String mailId) {
 		this.mailId = mailId;
 	}
-	
-	@Override
-	@Column(name="CREATED_ON")
-	public Date getCreatedOn() {
-		// TODO Auto-generated method stub
-		return super.createdOn;
-	}
 
-
-	
-	@Column(name="STATUS")
+	@Column(name = "STATUS")
 	public String getStatus() {
-		// TODO Auto-generated method stub
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "ManagerModel [name=" + name + ", mailId=" + mailId + ", id=" + id + ", createdOn=" + createdOn
-				+ ", status=" + status + "]";
+		return "ManagerModel [name=" + name + ", mailId=" + mailId + ", status=" + status + ", id=" + id
+				+ ", createdOn=" + createdOn + "]";
 	}
-
-	
 
 }
