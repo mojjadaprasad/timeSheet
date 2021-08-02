@@ -24,7 +24,7 @@ public class TimeSheetModel extends BaseEntity {
 	@Id
 	@Override
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name ="ID")
 	public Long getId() {
 		return super.id;
 	}
@@ -39,7 +39,6 @@ public class TimeSheetModel extends BaseEntity {
 	public void setAssignment(AssignmentModel assignment) {
 		this.assignment = assignment;
 	}
-
 	@Column(name = "DATE")
 	public Date getDate() {
 		return date;
