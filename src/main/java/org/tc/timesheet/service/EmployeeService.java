@@ -5,23 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tc.timesheet.controller.AuthController;
 import org.tc.timesheet.dto.EmployeeDto;
 import org.tc.timesheet.exception.ResourceNotFoundException;
 import org.tc.timesheet.model.EmployeeModel;
 import org.tc.timesheet.repository.EmployeeRepository;
 import org.tc.timesheet.util.MapperUtil;
+import org.tc.timesheet.util.Messages;
+import org.tc.timesheet.util.ResponceException;
 
 @Service
 public class EmployeeService {
-
+			Logger logg=LoggerFactory.getLogger(EmployeeService.class);
 	@Autowired
 	EmployeeRepository repository;
 
 	public List<EmployeeDto> findAll() {
 		List<EmployeeModel> employeeList = repository.findAll();
 		List<EmployeeDto> dtoList = MapperUtil.map(employeeList, EmployeeDto.class);
+		
 		return dtoList;
 	}
 
@@ -40,6 +46,7 @@ public class EmployeeService {
 		EmployeeModel employee = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee id not found"));
 		EmployeeDto employeeDto = MapperUtil.map(employee, EmployeeDto.class);
+		logg.info("Request:{{}}",Messages.INVALID_ID);
 		return employeeDto;
 	}
 
@@ -61,9 +68,10 @@ public class EmployeeService {
 		return responseMap;
 	}
 	
-	public List<EmployeeDto> login(String userName,String password,String mobileNo) {
+	public List<EmployeeDto> login(String userName,String password,String mobileNo) throws ResponceException{
 		List<EmployeeModel> models=repository.getEmployeeInformation(userName, password,mobileNo);
 		List<EmployeeDto> dtoList= MapperUtil.map(models, EmployeeDto.class);
-		return  dtoList;
+		return dtoList;
+		
 	}
 }

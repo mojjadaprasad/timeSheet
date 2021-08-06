@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tc.timesheet.dto.ManagerDto;
@@ -15,14 +16,17 @@ import org.tc.timesheet.util.MapperUtil;
 
 @Service
 public class ManagerService {
-
+	//Logger logg=LoggerFactory.getLogger();
 	@Autowired
 	ManagerRepository repository;
 
 	public List<ManagerDto> findAll() {
-		List<ManagerModel> managerList = repository.findAll();
+	
+			List<ManagerModel> managerList = repository.findAll();
+		
 		List<ManagerDto> managerDtoList = MapperUtil.map(managerList, ManagerDto.class);
 		return managerDtoList;
+		
 	}
 
 	public ManagerDto save(ManagerDto managerDto) {

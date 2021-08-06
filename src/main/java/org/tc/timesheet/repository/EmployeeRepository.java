@@ -14,3 +14,4 @@ public interface EmployeeRepository extends JpaRepository<EmployeeModel, Long> {
 	@Query("from EmployeeModel where ((userName=:userName OR mobile=:mobileNo) AND password=:password)")
 	public List<EmployeeModel> getEmployeeInformation(@Param("userName")String userName,@Param("password") String password,@Param("mobileNo") String mobileNo);
 }
+

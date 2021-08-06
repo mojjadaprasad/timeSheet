@@ -3,6 +3,7 @@ package org.tc.timesheet.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,7 +27,7 @@ import org.tc.timesheet.service.TimeSheetService;
 @RestController
 @RequestMapping("/timesheet")
 public class TimeSheetController {
-
+	Logger logg =Logger.getLogger(TimeSheetController.class);
 	@Autowired
 	TimeSheetRepository timeSheetRepository;
 
@@ -37,6 +38,7 @@ public class TimeSheetController {
 	@ResponseBody
 	public List<TimeSheetDto> findAll() {
 		List<TimeSheetDto> list = timeSheetService.findAll();
+		logg.infof("Responce:{{}}",list);
 		return list;
 	}
 	
@@ -45,6 +47,7 @@ public class TimeSheetController {
 			@RequestParam(value="fromDate",required=true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate ,
 			@RequestParam(value="toDate",required=true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate){
 		List<TimeSheetDto> dtoList=timeSheetService.findByAssignmentIdAndDateRange(assignmentId,fromDate,toDate);
+		logg.infof("Responce:{{}}",dtoList);
 		return dtoList;
 	}
 
@@ -52,6 +55,7 @@ public class TimeSheetController {
 	@ResponseBody
 	public List<TimeSheetDto> saveData(@RequestBody List<TimeSheetDto> timeSheetModel) {
 		List<TimeSheetDto> timeSheet = timeSheetService.save(timeSheetModel);
+		logg.infof("Responce:{{}}",timeSheet);
 		return timeSheet;
 	}
 
@@ -59,6 +63,7 @@ public class TimeSheetController {
 	@ResponseBody
 	public TimeSheetDto getById(@PathVariable(value = "id") Long id, @RequestBody TimeSheetModel timeSheetModel) {
 		TimeSheetDto timeSheet = timeSheetService.findById(id);
+		logg.infof("Responce:{{}}",timeSheet);
 		return timeSheet;
 	}
 
@@ -66,6 +71,7 @@ public class TimeSheetController {
 	@ResponseBody
 	public TimeSheetDto updateTimeSheet(@RequestBody TimeSheetDto timeSheet) {
 		TimeSheetDto updateTimeSheet = timeSheetService.updateTimeSheet(timeSheet);
+		logg.infof("Responce:{{}}",updateTimeSheet);
 		return updateTimeSheet;
 	}
 
@@ -75,7 +81,6 @@ public class TimeSheetController {
 			@RequestParam(name = "from", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
 			@RequestParam(name = "to", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date to) {
 		InputStreamResource file = new InputStreamResource(timeSheetService.load(managerId, from, to));
-
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + TimeSheetService.fileName + ".xlsx")
 				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);

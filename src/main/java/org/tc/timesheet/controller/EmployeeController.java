@@ -3,6 +3,8 @@ package org.tc.timesheet.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import org.tc.timesheet.service.EmployeeService;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-
+static final Logger logg = LoggerFactory.getLogger(EmployeeController.class);
 	@Autowired
 	EmployeeService service;
 
@@ -27,6 +29,7 @@ public class EmployeeController {
 	@ResponseBody
 	public List<EmployeeDto> getList() {
 		List<EmployeeDto> list = service.findAll();
+		logg.info("Responce:{}",list);
 		return list;
 	}
 
@@ -34,6 +37,7 @@ public class EmployeeController {
 	@ResponseBody
 	public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeModel) {
 		EmployeeDto employee = service.save(employeeModel);
+		logg.info("Responce:{{}}",employee);
 		return employee;
 	}
 
@@ -41,7 +45,7 @@ public class EmployeeController {
 	@ResponseBody
 	public EmployeeDto getById(@PathVariable(value = "id") Long id) {
 		EmployeeDto employeeModel = service.findById(id);
-
+		logg.info("Responce:{{}}",employeeModel);
 		return employeeModel;
 	}
 
@@ -49,6 +53,7 @@ public class EmployeeController {
 	@ResponseBody
 	public EmployeeDto empDetailsUpdate(@RequestBody EmployeeDto employeeModel) {
 		EmployeeDto updateData = service.update(employeeModel);
+		logg.info("Responce:{{}}",updateData);
 		return updateData;
 	}
 
@@ -56,6 +61,7 @@ public class EmployeeController {
 	@ResponseBody
 	public Map<String, Object> deleteEmployee(@PathVariable(value = "id") Long id) {
 		Map<String, Object> responseMap = service.deleteEmployee(id);
+		logg.info("Responce:{{}}",responseMap);
 		return responseMap;
 	}
 }
